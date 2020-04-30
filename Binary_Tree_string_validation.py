@@ -40,3 +40,13 @@ Each node's value is between [0 - 9].
 #         self.right = right
 class Solution:
     def isValidSequence(self, root: TreeNode, arr: List[int]) -> bool:
+        return self.checkpath(root, arr, 0)
+    
+    def checkpath(self, root, arr, indx):
+        if not(root) or indx == len(arr):
+            return False
+        if root.left == None and root.right == None and root.val == arr[indx] and indx == len(arr)-1:
+            return True
+        return root.val == arr[indx] and self.checkpath(root.left, arr, indx+1) or self.checkpath(root.right, arr, indx+1)
+                
+       
